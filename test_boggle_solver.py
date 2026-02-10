@@ -64,16 +64,18 @@ class TestBoggleSolver(unittest.TestCase):
         self.assertEqual(len(solver.getSolution()), 0)
 
     def test_large_grid(self):
-        """9. Test logic on a larger 5x5 grid with variety."""
+        """9. Test logic on a larger 5x5 grid with unique letters."""
         grid = [["A", "B", "C", "D", "E"],
                 ["F", "G", "H", "I", "J"],
                 ["K", "L", "M", "N", "O"],
                 ["P", "Q", "R", "S", "T"],
                 ["U", "V", "W", "X", "Y"]]
-        dictionary = ["ABCDE", "AFKPU"]
+        dictionary = ["ABCDE", "AFKPU", "VWGHI"]
         solver = Boggle(grid, dictionary)
         solution = solver.getSolution()
+        # Your solver returns lowercase, so match that here
         self.assertIn("abcde", solution)
+        self.assertIn("afkpu", solution)
 
     def test_multiple_occurrences(self):
         """10. Ensure same word isn't duplicated in solution list."""
