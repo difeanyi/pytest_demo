@@ -30,8 +30,13 @@ class Boggle:
             if r < 0 or r >= rows or c < 0 or c >= cols or visited[r][c]:
                 return
 
-            tile = self.grid[r][c].upper()
-            current_word += tile
+            tile = str(self.grid[r][c]).upper()
+            
+            # Special logic for "Qu" tiles
+            if tile == "Q":
+                current_word += "QU"
+            else:
+                current_word += tile
             
             if len(current_word) >= 3 and current_word in self.dictionary:
                 found_words.add(current_word.lower())
